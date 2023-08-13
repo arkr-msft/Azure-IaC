@@ -1,25 +1,26 @@
 // bicep code for cognitive services deployment
 
-param p_rgName string
 param p_openAiName string
+param p_location string
 param p_tags object = {}
-
+param p_sku string
+param p_kind string
 
 resource cognitiveServices 'Microsoft.CognitiveServices/accounts@2021-04-30' = {
   name: p_openAiName
-  location: resourceGroup().location
+  location: p_location
+  tags: p_tags
   sku: {
-    name: 'S0'
+    name: p_sku
   }
-  kind: 'OpenAI'
+  kind: p_kind
   properties: {
-    encryption: {
-      keySource: 'Microsoft.CognitiveServices'
-      keyVaultProperties: {
-        keyName: 'cognitiveServicesKey'
-        keyVaultUri: 'https://myKeyVault.vault.azure.net'
-        keyVersion: 'cognitiveServicesKeyVersion'
-      }
+    disableLocalAuth: true
+    networkAcls: {
+      defaultAction: 'Deny'
+      ipRules: []
+      virtualNetworkRules: []
     }
+  publicNetworkAccess: 'Enabled'
   }
 }

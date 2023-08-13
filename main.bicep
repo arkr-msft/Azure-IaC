@@ -19,8 +19,15 @@ var v_tags = {
 }
 var v_cognitiveServicesName = 'arkr-msft-cogsvc'
 
+//OpenAI SKU:
+var v_sku = 'S0'
+
+//Cognitive Services Kind:
+var v_kind = 'OpenAI'
+
+
 // Resource Group module - creates the resource group - parameters are passed in from the variables above
-module resourceGroup 'modules/resource_group.bicep' = {
+module rg 'modules/resource_group.bicep' = {
   scope: subscription()
   name: v_resourceGroupName
   params: {
@@ -31,17 +38,18 @@ module resourceGroup 'modules/resource_group.bicep' = {
 }
 
 // Cognitive Services module - creates the cognitive services account - parameters are passed in from the variables above
-module cognitiveServices 'modules/cognitive_services.bicep' = {
-  scope: resourceGroup(v_resourceGroupName)
-  name: v_cognitiveServicesNameq
-  depends on: [
-    resourceGroup
+module cs 'modules/cognitive_services.bicep' = {
+  scope: resourceGroup(rg.name)
+  name: v_cognitiveServicesName
+  dependsOn: [
+    rg
   ]
   params: {
-    sku: sku
-    kind: kind
-    resourceGroup: resourceGroup
-    tags: tagsJoined
-    location: location  }
+    p_openAiName: v_cognitiveServicesName 
+    p_location: v_rgLocation
+    p_tags: v_tags 
+    p_sku: v_sku
+    p_kind: v_kind
+  }
 }
 
