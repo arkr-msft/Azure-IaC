@@ -4,7 +4,6 @@
 // License: MIT
 
 // This file is the main bicep file that will be used to deploy the resources in Azure. It will call required module files to deploy the resources.
-// This file is executed by the Azure CLI command: az deployment group create -f main.bicep -g arkr_msft --mode Complete
 
 targetScope = 'subscription'
 

@@ -6,7 +6,7 @@ param p_rgName string
 param p_rgLocation string
 param p_tags object = {}
 
-resource rg 'Microsoft.Resources/resourceGroups@2018-05-01' = {
+resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   location: p_rgLocation
   name: p_rgName
   properties: {}
