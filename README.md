@@ -3,7 +3,7 @@ This repo contains infrastructure as code for deployment of specific resources t
 
 ## Steps to deploy in Azure:
 
-### 1. Verify & Install azure-cli is installed
+### 1. Verify azure-cli is installed. Install if not present.
 pip freeze | less
 pip install azure-cli
 
@@ -22,5 +22,11 @@ az deployment sub create \
 
 ## Steps to remove resources 
 
-### 1. Execute below command
+### 1. Execute below command to delete RG and all resources in it
 az group delete --name rgName
+
+### 2. Below command can be used to delete specific resources
+az resource delete \
+  --resource-group arkr_msft \
+  --name resourcename \
+  --resource-type "Microsoft.CognitiveServices/accounts@2021-04-30"

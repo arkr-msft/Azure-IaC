@@ -5,7 +5,7 @@
 
 // This file is the main bicep file that will be used to deploy the resources in Azure. It will call required module files to deploy the resources.
 
-targetScope = 'subscription'
+//targetScope = 'subscription'
 
 // Variables - (preset in the file to prevent prompting for input)
 
@@ -17,9 +17,11 @@ var v_tags = {
   created_via: 'bicep'
   Environment: v_environment
 }
+var v_cognitiveServicesName = 'arkr-msft-cogsvc'
 
 // Resource Group module - creates the resource group - parameters are passed in from the variables above
 module resourceGroup 'modules/resource_group.bicep' = {
+  scope: subscription()
   name: v_resourceGroupName
   params: {
     p_rgName: v_resourceGroupName
@@ -28,15 +30,18 @@ module resourceGroup 'modules/resource_group.bicep' = {
   }
 }
 
-
-// module cognitiveServices 'modules/cognitiveservices.bicep' = {
-//  name: cognitiveServicesName
-//  location: location
-//  params: {
-//    sku: sku
-//    kind: kind
-//    resourceGroup: resourceGroup
-//    tags: tagsJoined
-//  }
-// }
+// Cognitive Services module - creates the cognitive services account - parameters are passed in from the variables above
+module cognitiveServices 'modules/cognitive_services.bicep' = {
+  scope: resourceGroup(v_resourceGroupName)
+  name: v_cognitiveServicesNameq
+  depends on: [
+    resourceGroup
+  ]
+  params: {
+    sku: sku
+    kind: kind
+    resourceGroup: resourceGroup
+    tags: tagsJoined
+    location: location  }
+}
 
