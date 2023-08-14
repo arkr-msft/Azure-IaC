@@ -5,6 +5,7 @@ param p_location string
 param p_tags object = {}
 param p_sku string
 param p_kind string
+param p_custom_subdomain_name string
 
 resource cognitiveServices 'Microsoft.CognitiveServices/accounts@2021-04-30' = {
   name: p_openAiName
@@ -16,6 +17,7 @@ resource cognitiveServices 'Microsoft.CognitiveServices/accounts@2021-04-30' = {
   kind: p_kind
   properties: {
     disableLocalAuth: true
+    customSubDomainName: p_custom_subdomain_name
     networkAcls: {
       defaultAction: 'Deny'
       ipRules: []

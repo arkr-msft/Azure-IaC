@@ -5,7 +5,7 @@
 
 // This file is the main bicep file that will be used to deploy the resources in Azure. It will call required module files to deploy the resources.
 
-//targetScope = 'subscription'
+targetScope = 'subscription'
 
 // Variables - (preset in the file to prevent prompting for input)
 
@@ -24,11 +24,11 @@ var v_sku = 'S0'
 
 //Cognitive Services Kind:
 var v_kind = 'OpenAI'
-
+var v_custom_subdomain_name = v_cognitiveServicesName
 
 // Resource Group module - creates the resource group - parameters are passed in from the variables above
 module rg 'modules/resource_group.bicep' = {
-  scope: subscription()
+//  scope: subscription()
   name: v_resourceGroupName
   params: {
     p_rgName: v_resourceGroupName
@@ -50,6 +50,7 @@ module cs 'modules/cognitive_services.bicep' = {
     p_tags: v_tags 
     p_sku: v_sku
     p_kind: v_kind
+    p_custom_subdomain_name: v_custom_subdomain_name
   }
 }
 
