@@ -9,15 +9,15 @@ targetScope = 'subscription'
 
 // Variables - (preset in the file to prevent prompting for input)
 
-var v_resourceGroupName = 'arkr_msft'
-var v_rgLocation = 'eastus'
+var v_resourceGroupName = 'arkr_msft_eastus2'
+var v_rgLocation = 'eastus2'
 var v_environment = 'learn'
 var v_tags = {
   template_source: 'github.com/arkr-msft/Azure-IaC'
   created_via: 'bicep'
   Environment: v_environment
 }
-var v_cognitiveServicesName = 'arkr-msft-cogsvc'
+var v_cognitiveServicesName = 'arkr-msft-cogsvc-eus2'
 
 //OpenAI SKU:
 var v_sku = 'S0'

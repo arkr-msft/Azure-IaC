@@ -16,9 +16,11 @@ az account set --subscription mysubscription
 ### 4. Executed the main.bicep file via Azure CLI command:
 az deployment sub create \
 --name 'MainDeployment'$(date +"%Y-%m-%d") \
---location <location> \
+--location "eastus" \
 --template-file main.bicep
 
+## Alternate command for east us 2
+az deployment sub create --name 'MainDeployment'$(date +"%Y-%m-%d") --location "eastus2" --template-file main.bicep
 
 ## Steps to remove resources 
 
