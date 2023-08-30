@@ -1,0 +1,23 @@
+{
+    "Name": "CustomRole-Cognitive-Services-OpenAI-User",
+    "IsCustom": true,
+    "description": "Custom role for Azure OpenAI consumers with minimum set of permissions",
+    "actions": [
+        "Microsoft.CognitiveServices/accounts/read", 
+        "Microsoft.CognitiveServices/accounts/deployments/read",
+        "Microsoft.CognitiveServices/accounts/models/read"
+
+    ],
+    "notActions": [],
+    "dataActions": [
+        "Microsoft.CognitiveServices/accounts/OpenAI/engines/completions/action",
+        "Microsoft.CognitiveServices/accounts/OpenAI/deployments/completions/action",
+        "Microsoft.CognitiveServices/accounts/OpenAI/deployments/chat/completions/action",
+        "Microsoft.CognitiveServices/accounts/OpenAI/deployments/extensions/chat/completions/action",
+        "Microsoft.CognitiveServices/accounts/OpenAI/deployments/embeddings/action"
+    ],
+    "notDataActions": [],
+    "AssignableScopes": [
+        "/subscription/<subscription-id>"
+    ]
+}
