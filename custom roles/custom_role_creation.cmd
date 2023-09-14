@@ -12,7 +12,7 @@ az role definition create --role-definition CustomRole-SupportEngg-AOAI.json
 
 //Update role
 //generate existing definition and save to json file (remove square brackets from saved file)
-az role definition list --name CustomRole-Cognitive-Services-OpenAI-User.json > CustomRole-Cognitive-Services-OpenAI-User-update.json
+az role definition list --name "CustomRole-Cognitive-Services-OpenAI-User" > CustomRole-Cognitive-Services-OpenAI-User-update.json
 
 
 
